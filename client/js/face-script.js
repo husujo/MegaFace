@@ -56,8 +56,23 @@
         });
         
         socket.on('final results', function(score_results, imageResults) {
+          
+          // score_results = [place => [id,score]]
+          // imageResults = [id => url]
+          
             console.log(score_results[0]);
             var winnerURL = imageResults[score_results[0][0]];
+            // var img = new Image();
+            // var context = document.getElementById('canvas2').getContext("2d");
+	         // canvas.width = width;
+            // canvas.height = height;
+           
+            // var img = new Image();
+            // img.onload = function () {
+            //     canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+            // }
+            // img.src = imageResults[myid];
+            // console.log("img src: "+img.src);
             
             console.log("here's the results!");
             console.log(score_results);
@@ -122,13 +137,13 @@
     }, false);
     
     function takepicture() {
-    canvas.width = width;
-    canvas.height = height;
-    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    var data = canvas.toDataURL('image/png');
-    //photo.setAttribute('src', data);
-    
-    sendPhoto(data.replace("data:image/png;base64,","")); // socket
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+      var data = canvas.toDataURL('image/png');
+      //photo.setAttribute('src', data);
+      
+      sendPhoto(data.replace("data:image/png;base64,","")); // socket
     }
     
     startbutton.addEventListener(
@@ -136,7 +151,7 @@
     function(ev){
         takepicture();
         ev.preventDefault();
-        
+        // $("#sharptab")
     },
     false
     );
@@ -146,7 +161,7 @@
     return Math.ceil(num * precision) / precision
     }
     
-    function drawSquare(params){
+    function drawSquare( params){
     canvas.width = width;
     canvas.height = height;
     canvas.getContext('2d').drawImage(video, 0, 0, width, height);
@@ -197,7 +212,7 @@
     '<div class="progress-bar" role="progressbar" aria-valuenow="'+(value*100) +'" aria-valuemin="0" aria-valuemax="100" style="width:'+(value*100)+'%">'+roundUp(value*100, 100)+
     '%</div></div>';
                     var row= $('<tr> </tr>').appendTo('#tab');  
-                    $('<td> </td>').text(key).appendTo(row);
+                    $('<td style="color:white"> </td>').text(key).appendTo(row);
                     $('<td> </td>').html(htmlstring).appendTo(row);
                 });
              
