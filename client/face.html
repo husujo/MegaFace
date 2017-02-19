@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSSample</title>
+    <!-- boostrap stuff-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <!--jquery-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>-->
+    <script src="/js/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--socket io-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/js/face-script.js"></script>
+</head>
+<body>
+      <div class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">MegaFace</a>
+          <div class="row-fluid">
+          <span class="label label-info span12 text-center" id="category" style="font-size:20px;"></span>
+          </div>
+        </div>
+        <div class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" >
+          <!--  <div class="form-group">-->
+          <!--    <input type="text" name="userId" id="userId" placeholder="User" class="form-control">-->
+          <!--  </div>-->
+          <!--  <div class="form-group">-->
+          <!--   <input type="text" name="roomId" id="roomId" placeholder="Room" class="form-control">-->
+          <!--  </div>-->
+          <!-- <input tupe="button" id="startButton" class="btn btn-success" value="Join"/>-->
+              <input type="text" id="password"/>
+              <input type="button" id="e1-btn" style="background-color:black;" value="e1"/>
+              <input type="button" id="e2-btn" style="background-color:black;" value="e2"/>
+              <input type="button" id="ready-btn" class="btn btn-success" value="Ready" style="padding: 8px 20px; font-size: 15px;" />
+          </form>
+          
+        </div>
+      </div>
+    </div>
+    
+        
+        <div class="container-fluid">
+            
+                <!--<div class="col-md-12" style="background-color:yellow;">-->
+                <!--    <label id="category" class="text-center"></label>-->
+                <!--</div>-->
+            
+            <div class="row">
+                <div class="col-md-3" >
+                   <canvas class="video-related" id="canvas"></canvas>
+                </div>
+                <div class="col-md-3 local" >
+                  <video class="video-related" id='localVideo'></video>
+                </div>
+                <div class="col-md-3" >
+                    <!--<img class="video-related" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/15941037_10210480705205273_5516888992355639297_n.jpg?oh=7624160c9981b9506d5167517738f262&oe=59312A8B">-->
+                   <video class="video-related" id='remoteVideo' class="remote"></video>
+                </div>
+               <div class="col-md-3" >
+                   <!--<img class="video-related" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/15941037_10210480705205273_5516888992355639297_n.jpg?oh=7624160c9981b9506d5167517738f262&oe=59312A8B">-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4" >
+                   <button class="btn btn-success" id="startbutton" style="padding: 8px 270px; font-size: 15px;">Take photo</button>
+                </div>
+               <div class="col-md-4" >
+                   
+                </div>
+            </div>
+            
+            <div class="row">
+                
+                <div class="col-md-6" >
+                    <!--style='width: 150px;'-->
+                   <center><table id="tab" class="table table-striped" ></table></center>
+                </div>
+                <div class="col-md-6" >
+                <div class="row">
+                    <div class="col-md-6" >
+                    <span class="label label-info pull-right" style="padding: 8px 60px;">First Place</span>
+                    <!--<button type="button" class="btn btn-info pull-right" style="padding: 8px 70px;">First place</button>-->
+                    
+                </div>
+                <div class="col-md-6">
+                     <span class="label label-info pull-left" style="padding: 8px 60px;">Second Place</span>
+                    <!--<button type="button" class="btn btn-info pull-left" style="padding: 8px 60px;">Second place</button>-->
+                    
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-6" >
+                    <div style="text-align: right">
+                    <img id="winner-img"  src="" width="200" >
+                    </div>
+                </div>
+                <div class="col-md-6" >
+                    <div style="text-align: left">
+                        <!--style="float: left;"-->
+                    <img id="second-img" src="" width="200" >
+                    </div>
+                </div>
+                </div>
+                </div>
+            </div>
+
+        </div>
+            
+            
+
+  
+</body>
+</html>
